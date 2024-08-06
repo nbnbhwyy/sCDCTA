@@ -1,4 +1,4 @@
-# sCDCTA: Interpretable Cell Type Annotation based on self-training
+# sCDCTA: Contextualized association scoring and Dual-view networks for Cell Type Annotation 
 
 The full description of sCDCTA and its application on published single cell RNA-seq datasets are available.
 
@@ -25,7 +25,8 @@ Topic_gene_embedding
 
 ### Data format
 
-sCDCTA requires cell-by-cell-gene matrix and cell type information to be entered in csv object format.
+sCDCTA requires an input in .h5ad object format. Includes: cell-by-cell gene matrix and cell type information and pseudo-labeling information for CAS.
+sCDCTA requires an input in .npz object format. Includes: a network of associations between cells.
 We provide default data for users to understand and debug sCDCTA code.
 
 ### Installation and implementation
