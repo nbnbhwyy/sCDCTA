@@ -172,7 +172,7 @@ def prediect(adata,model_weight_path,project,mask_path,laten=False,save_att = 'X
             print(accu_num.item() / sample_num)
 
             adata.uns['dicts_cell_type']['Unknown'] = len(adata.uns['dicts_cell_type'])
-            y_true = list(adata.obs[label_name])#= []
+            y_true = list(adata.obs[label_name])
             y_pre = torch.max(torch.from_numpy(pre_list), dim=1)[1].numpy()
             (precision_macro, recall_macro, f1_macro), (precision_micro, recall_micro, f1_micro)= np.round(f1(np.array(y_true), np.array(pre_all)), 5) 
             print('F1 score: f1_macro = {}, f1_micro = {}'.format(f1_macro, f1_micro))

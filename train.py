@@ -187,7 +187,7 @@ def fit_model(adata, gmt_path, project = None, pre_weights='', label_name='Cellt
   #  GLOBAL_SEED = 1
   #  set_seed(GLOBAL_SEED)  
     device = 'cuda:2'
-    device = torch.device(device if torch.cuda.is_available() else "cpu")  #设置种子和cuda
+    device = torch.device(device if torch.cuda.is_available() else "cpu") 
     print(device)
     today = time.strftime('%Y%m%d',time.localtime(time.time()))
     #train_weights = os.getcwd()+"/weights%s"%today
@@ -276,7 +276,7 @@ def fit_model(adata, gmt_path, project = None, pre_weights='', label_name='Cellt
         else:
             if epoch==20:
                 filepath = "/path_data/Muraro_rela.npz"
-                loaded_matrix = sparse.load_npz(filepath).toarray() # 通过load_npz函数加载稀疏矩阵
+                loaded_matrix = sparse.load_npz(filepath).toarray() 
                 reconstructed_matrix = sparse.csr_matrix(loaded_matrix)
                 model.rela = reconstructed_matrix
             optimizer = optim.AdamW(pg, lr=0.000001, weight_decay=1E-7) 

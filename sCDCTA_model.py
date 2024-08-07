@@ -72,7 +72,7 @@ class FeatureEmbed(nn.Module):
         self.num_genes = num_genes
         self.num_patches = mask.shape[1]
         self.embed_dim = embed_dim
-        mask = np.repeat(mask,embed_dim,axis=1)  #每列复制embed_dim次
+        mask = np.repeat(mask,embed_dim,axis=1) 
         self.mask = mask
         self.fe = CustomizedLinear(self.mask)
         self.norm = norm_layer(embed_dim) if norm_layer else nn.Identity()
@@ -293,7 +293,7 @@ class Transformer(nn.Module):
     def forward_features(self, x):
         x = self.feature_embed(x)
         cls_token = self.cls_token.expand(x.shape[0], -1, -1)
-        if self.dist_token is None: #ViT中就是None
+        if self.dist_token is None: 
             x = torch.cat((cls_token, x), dim=1) 
         else:
             x = torch.cat((cls_token, self.dist_token.expand(x.shape[0], -1, -1), x), dim=1)
