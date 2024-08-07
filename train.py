@@ -1,14 +1,11 @@
 import random
 import numpy as np
-
 from torch.utils.data import Dataset
-
 import sys
 import pandas as pd
 from tqdm import tqdm
 from sklearn.preprocessing import LabelEncoder
 from collections import OrderedDict
-
 import os
 import math
 import torch
@@ -187,8 +184,8 @@ def evaluate_2(model, data_loader, device, epoch):
     return latent_all, pred_all, attn_weights_all
 
 def fit_model(adata, gmt_path, project = None, pre_weights='', label_name='Celltype',max_g=300,max_gs=300, mask_ratio = 0.015,n_unannotated = 1,batch_size=64, embed_dim=200,depth=3,num_heads=4,lr=0.005, epochs= 10, lrf=0.01):
-    GLOBAL_SEED = 1
-    set_seed(GLOBAL_SEED)  
+  #  GLOBAL_SEED = 1
+  #  set_seed(GLOBAL_SEED)  
     device = 'cuda:2'
     device = torch.device(device if torch.cuda.is_available() else "cpu")  #设置种子和cuda
     print(device)
@@ -238,10 +235,7 @@ def fit_model(adata, gmt_path, project = None, pre_weights='', label_name='Cellt
     thr = []
     for index in range(len(adata.uns['dicts_cell_type'])):
         temp = adata.uns['Celltype_soft'][np.array(y_pre)==index][:,index]
-        if len(temp)<200:
-            thr.append(np.sort(temp)[int(len(temp)*0.0)])
-        else:
-            thr.append(np.sort(temp)[int(len(temp)*0.8)])
+        thr.append(np.sort(temp)[int(len(temp)*0.8)])
 
     ext_index = []
     for index in range(len(adata.uns['Celltype_soft'])): 
